@@ -1,21 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import CarService from './components/CarService';
+import { View, Text } from 'react-native';
+import React from 'react';
+import {NavigationContainer} from "@react-navigation/native";
+import {createStackNavigator} from "@react-navigation/stack";
+import Home from "./assets/src/Home";
+import SecondPage from "./assets/src/SecondPage";
 
-export default function App() {
+const Stack = createStackNavigator();
+
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <CarService/>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Home'
+      screenOptions={{headerShown:false}}>
+        <Stack.Screen name= "Home" component={Home}/>
+        <Stack.Screen name= "SecondPage" component={SecondPage}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-});
+export default App
